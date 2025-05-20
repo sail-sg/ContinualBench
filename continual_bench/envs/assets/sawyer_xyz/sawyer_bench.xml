@@ -1,0 +1,73 @@
+<mujoco>
+  <include file="../scene/basic_scene.xml"/>
+  <include file="../objects/assets/buttonbox_dependencies.xml"/>
+  <include file="../objects/assets/doorlock_dependencies.xml"/>
+  <include file="../objects/assets/window_dependencies.xml"/>
+  <include file="../objects/assets/faucet_dependencies.xml"/>
+  <include file="../objects/assets/plug_dependencies.xml"/>
+  <include file="../objects/assets/wall_dependencies.xml"/>
+  <include file="../objects/assets/xyz_base_dependencies.xml"/>
+
+    <worldbody>
+      <include file="../objects/assets/xyz_base.xml"/>
+        <!-- Button -->
+        <body name="button1" euler="-1.57 0 0" pos="0 0.85 0.12">
+          <include file="../objects/assets/buttonbox.xml"/>
+          <site name="buttonStart" pos="0 -0.1935 0" size="0.005" rgba="0 0.8 0 1"/>
+          <site name="buttonHole" pos="0 -0.1 0" size="0.005" rgba="0 0.8 0 1"/>
+        </body>
+        <!-- Door -->
+        <body name="door" pos="0 0.9 0.15">
+          <include file="../objects/assets/doorlockB.xml"/>
+        </body>
+        <site name="doorGoal" pos="-0.49 0.46 0.15" size="0.02"
+          rgba="0 0.8 0 1"/>
+        <!-- Window -->
+        <body name="window" euler="0 0 1.57" pos="-0.45 0.5 0.202">
+          <include file="../objects/assets/window_horiz.xml"/>
+        </body>
+        <!-- Faucet -->
+        <body name="faucet" pos="0 0.8 0" euler="0 0 3.14">
+          <include file="../objects/assets/faucet.xml"/>
+        </body>
+        <site name="faucetGoal" pos="-0.49 0.46 0.15" size="0.02"
+          rgba="0 0.8 0 1"/>
+        <!-- Peg -->
+        <body name="peg" pos="-.252 .6 .131">
+          <joint type="free"/>
+          <include file="../objects/assets/plug.xml"/>
+        </body>
+        <body name="pegBox" pos="-.3 .6 0">
+          <include file="../objects/assets/plug_wall.xml"/>
+        </body>
+        <site name="pegGoal" pos="0 0.6 0.05" size="0.01" rgba="0.8 0 0 1"/>
+        <!-- Block -->
+        <body name="block" pos="0 0.6 0.02">
+          <joint name="blockjoint" type="free" limited='false' damping="0.0" armature="0" />
+          <inertial pos="0 0 0" mass="0.01" diaginertia="100000 100000 100000"/>
+          <geom name="blockGeom" type="box" pos="0 0 0" solimp="0.99 0.99 0.01"
+                size="0.02 0.02 0.02" rgba="0 0 1 1" solref="0.01 1"
+                friction="2 0.1 0.002" 
+          />
+          <!-- <geom name="blockGeom" type="box" pos="0 0 0" solimp="0.99 0.99 0.01"
+                size="0.02 0.02 0.02" rgba="0 0 1 1" solref="0.01 1"
+                contype="1" conaffinity="1" friction="2 0.1 0.002" condim="4"
+          /> -->
+        </body>
+        <!-- <body name="wall" pos="0.5 0.33 .04">
+          <geom material="wall_brick" type="box" size=".16 .01 .04"/>
+          <geom class="wall_col" type="box" size=".16 .01 .04"/>
+        </body> -->
+        <site name="blockGoal" pos="0.52 0.33 0.2" size="0.02"
+            rgba="0 0.8 0 1"/>
+
+    </worldbody>
+
+    <actuator>
+        <position ctrllimited="true" ctrlrange="-1 1" joint="r_close" kp="400"  user="1"/>
+        <position ctrllimited="true" ctrlrange="-1 1" joint="l_close" kp="400"  user="1"/>
+    </actuator>
+    <equality>
+        <weld body1="mocap" body2="hand" solref="0.02 1"/>
+    </equality>
+</mujoco>
