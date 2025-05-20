@@ -13,7 +13,7 @@ Continual Bench provides an environment suitable for evaluating online reinforce
 ## Installation
 
 ```console
-git clone git@github.com:sail-sg/ContinualBench.git && cd continual-bench
+git clone git@github.com:sail-sg/ContinualBench.git && cd ContinualBench
 pip install -e .
 ```
 
