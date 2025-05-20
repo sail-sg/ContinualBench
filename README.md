@@ -33,7 +33,7 @@ next_obs, reward, terminated, truncated, info = env.step(action)
 
 ## Citation
 
-If you find our works useful for your research, please consider citing:
+If you find our work useful for your research, please consider citing:
 
 ```bibtex
 @inproceedings{liu2025continual,
